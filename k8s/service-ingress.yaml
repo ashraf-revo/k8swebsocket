@@ -16,7 +16,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /ws/?(.*)
+          - path: /k8swebsocket/?(.*)
             backend:
-              serviceName: ws
+              serviceName: k8swebsocket
               servicePort: 8080
