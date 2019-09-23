@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8swebsocket
+spec:
+  selector:
+    matchLabels:
+      run: k8swebsocket
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: k8swebsocket
+    spec:
+      containers:
+        - name: k8swebsocket
+          image: ashraf1abdelrasool/k8swebsocket:0.0.1-SNAPSHOT
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8swebsocket
+  labels:
+    run: k8swebsocket
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
+  selector:
+    run: k8swebsocket
